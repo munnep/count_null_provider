@@ -1,8 +1,8 @@
 # Example: null provider and count with Terraform
 
-The null provider is a rather-unusual provider that has constructs that intentionally do nothing. [See documentation](https://registry.terraform.io/providers/hashicorp/null/latest/docs) 
+Information null provider [See documentation](https://registry.terraform.io/providers/hashicorp/null/latest/docs) 
 
-By default, a resource block configures one real infrastructure object. (Similarly, a module block includes a child module's contents into the configuration one time.) However, sometimes you want to manage several similar objects (like a fixed pool of compute instances) without writing a separate block for each one.[Documentation count](https://www.terraform.io/docs/language/meta-arguments/count.html)
+Information Terraform count [See documentation](https://www.terraform.io/docs/language/meta-arguments/count.html)
 
 This repository shows en example on how you can call on the null provider with a resource and count
 
@@ -21,7 +21,6 @@ git clone https://github.com/munnep/count_null_provider.git
 ```
 cd count_null_provider
 ```
-3. Take a look at the ```main.tf``` file with an editor
 4. Terraform initialize
 ```
 terraform init
@@ -36,7 +35,14 @@ terraform apply
 ```
 7. Sample output
 ```
-...
-...
-...
+null_resource.patrick[0]: Creating...
+null_resource.patrick[1]: Creating...
+null_resource.patrick[1]: Provisioning with 'local-exec'...
+null_resource.patrick[0]: Provisioning with 'local-exec'...
+null_resource.patrick[1] (local-exec): Executing: ["/bin/sh" "-c" "echo hello Patrick 1"]
+null_resource.patrick[0] (local-exec): Executing: ["/bin/sh" "-c" "echo hello Patrick 0"]
+null_resource.patrick[1] (local-exec): hello Patrick 1
+null_resource.patrick[1]: Creation complete after 0s [id=7984240275183883851]
+null_resource.patrick[0] (local-exec): hello Patrick 0
+null_resource.patrick[0]: Creation complete after 0s [id=7950855494080619432]
 ```
